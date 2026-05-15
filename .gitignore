@@ -1,0 +1,12 @@
+# Compiled class files
+*.class
+*.log
+*.db
+target/
+.idea/
+.vscode/
+.project
+.classpath
+.settings/
+*.iml
+.env
