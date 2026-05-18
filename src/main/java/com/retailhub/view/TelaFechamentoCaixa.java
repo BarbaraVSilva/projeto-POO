@@ -86,12 +86,16 @@ public class TelaFechamentoCaixa extends JPanel {
         actionPanel.add(new JLabel("Observações de Fechamento:"), BorderLayout.NORTH);
         actionPanel.add(new JScrollPane(txtObs), BorderLayout.CENTER);
 
+        final double fDinheiro = totalDinheiro;
+        final double fCartao = totalCartao;
+        final double fPix = totalPix;
+
         JButton btnFecharCaixa = UIUtils.createButton("Realizar Fechamento e Logoff", UIUtils.COLOR_SUCCESS);
         btnFecharCaixa.setPreferredSize(new Dimension(0, 50));
         btnFecharCaixa.addActionListener(e -> {
             int res = JOptionPane.showConfirmDialog(this, "Deseja realmente fechar o caixa e encerrar a sessão?", "Confirmação", JOptionPane.YES_NO_OPTION);
             if (res == JOptionPane.YES_OPTION) {
-                LogService.registrar("Realizou fechamento de caixa. Total: R$ " + String.format("%.2f", totalDinheiro + totalCartao + totalPix));
+                LogService.registrar("Realizou fechamento de caixa. Total: R$ " + String.format("%.2f", fDinheiro + fCartao + fPix));
                 JOptionPane.showMessageDialog(this, "Caixa fechado com sucesso! Relatório enviado ao administrador.");
                 Window win = SwingUtilities.getWindowAncestor(this);
                 if (win instanceof TelaPrincipal) {

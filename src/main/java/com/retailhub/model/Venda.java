@@ -52,11 +52,16 @@ public class Venda {
     public String getDataVenda() { return dataVenda; }
     public void setDataVenda(String dataVenda) { this.dataVenda = dataVenda; }
     
-    public double getTotalComDesconto() {
+    public double getTotalBruto() {
         double subtotal = 0;
         for (ItemVenda item : itens) {
             subtotal += item.getSubtotal();
         }
+        return subtotal;
+    }
+
+    public double getTotalComDesconto() {
+        double subtotal = getTotalBruto();
         
         if (cupom != null) {
             return subtotal - (subtotal * (cupom.getDescontoPercentual() / 100.0));
